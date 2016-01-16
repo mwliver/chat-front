@@ -10,18 +10,18 @@
 
 <link href="<c:url value="/resources/form.css" />" rel="stylesheet">
 
-<title>Dodaj opiekuna</title>
+<title>Wiadomość</title>
 </head>
 <body>
-	<form:form method="post" commandName="carer" class="smart-green">
+	<form:form method="post" commandName="carerForm" class="smart-green">
 		<h1>
-			Edycja opiekuna <span>Proszę wypełnić wszystkie pola.</span>
+			Dodaj opiekuna <span>Proszę wypełnić wszystkie pola.</span>
 		</h1>
 		<font color="red"><b>${info}</b></font>
 
 		<form:input type="hidden" path="id" />
 
-		<label> <span>Imie :</span> <form:input type="text"
+		<label> <span>Imię :</span> <form:input type="text"
 				path="name" /></label>
 
 		<label> <span>Nazwisko :</span> <form:input type="text"
@@ -57,7 +57,7 @@
 
 		<center>
 			<label> <span>&nbsp;</span> <input type="submit"
-				class="button" value="Edytuj opiekuna" />
+				class="button" value="Dodaj opiekuna" />
 			</label> </br> </br> <a class="button" href=<c:url value="/" />><span>Strona
 					główna</span></a> <a class="button" href=<c:url value="/manage/carers/list" />><span>Lista
 					Opiekunów</span></a>

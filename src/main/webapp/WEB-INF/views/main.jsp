@@ -13,42 +13,17 @@
 <security:authorize access="hasRole('SUPERADMIN')">
 
 	<div class="main">
-		<h1>eOpieka - Administrator</h1>
+		<h1>Czat</h1>
 		<ul>
-			<li><a href=<c:url value="/manage/patients/list" />><span>Zarządzanie
-						pacjentami</span></a></li>
+			<li><a href=<c:url value="/message/list" />><span>Wejście do czatu</span></a></li>
 			<br>
-			<li><a href=<c:url value="/manage/carers/list" />><span>Zarządzanie
-						opiekunami</span></a></li>
+			<li><a href=<c:url value="/user/list" />><span>Zarządzanie użytkownikami</span></a></li>
 
 			<br>
 			<br>
 			<li><a href=<c:url value="/logout" />><span>Wyloguj</span></a></li>
-
-
-
 		</ul>
 	</div>
 </security:authorize>
-
-<security:authorize access="hasRole('DISPATCHER')">
-
-	<div class="main">
-		<h1>eOpieka - Dyspozytor</h1>
-		<ul>
-			<li><a href=<c:url value="/dispatcher/configure" />><span>Status agenta dyspozytora</span></a></li>
-			<!--  <br>
-			<li><a href=<c:url value="/dispatcher/events" />><span>Bieżące zdarzenia</span></a></li>-->
-
-			<br>
-			<br>
-			<li><a href=<c:url value="/logout" />><span>Wyloguj</span></a></li>
-
-
-
-		</ul>
-	</div>
-</security:authorize>
-
 </body>
 </html>

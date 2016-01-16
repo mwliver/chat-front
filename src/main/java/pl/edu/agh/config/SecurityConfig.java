@@ -18,17 +18,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		auth.inMemoryAuthentication().withUser("admin").password("admin1")
 				.roles("SUPERADMIN");
-		auth.inMemoryAuthentication().withUser("dispatcher").password("dispatcher1")
-				.roles("DISPATCHER");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				.authorizeRequests()
-				.antMatchers("/").hasAnyRole("SUPERADMIN", "DISPATCHER")
-				.antMatchers("/manage/**").hasRole("SUPERADMIN")
-				.antMatchers("/dispatcher/**").hasRole("DISPATCHER")
+				.antMatchers("/").hasAnyRole("SUPERADMIN")
+				.antMatchers("/user/**").hasRole("SUPERADMIN")
+				.antMatchers("/message/**").hasRole("SUPERADMIN")
 				.anyRequest().authenticated()
 				.and()
 				.formLogin()

@@ -17,29 +17,20 @@
 			<thead>
 				<tr>
 					<th>id</th>
-					<th>imie</th>
-					<th>Nazwisko</th>
-					<th>Adres</th>
-					<th>Nazwa użytkownika</th>
+					<th>Imię</th>
+					<th>Login</th>
 					<th>Hasło</th>
-					<th>Numer telefonu</th>
-					<th>Email</th>
-					<th>Kwalifikacje</th>
-					<th>Dostepność</th>
-					<th>Data ostatniej modyfikacji</th>
-					<th>Usuń</th>
-					<th>Edytuj</th>
 
 				</tr>
 			</thead>
 			<tfoot>
 				<tr>
-					<td colspan="13"><div id="paging">
+					<td colspan="14"><div id="paging">
 							<ul>
 								<li><a href=<c:url value="/" />><span>Strona
 											główna</span></a></li>
-								<li><a href=<c:url value="/manage/carers/save" />><span>Dodaj
-											opiekuna</span></a></li>
+								<li><a href=<c:url value="/user/save" />><span>Dodaj
+											użytkownika</span></a></li>
 											<li><font color = "red"><b>${info}</b></font></li>
 
 
@@ -47,27 +38,24 @@
 						</div>
 				</tr>
 			</tfoot>
-			<c:forEach var="carer" items="${carers}">
+			<c:forEach var="user" items="${users}">
 				<tbody>
 					<tr>
-						<td>${carer.id}</td>
-						<td>${carer.name}</td>
-						<td>${carer.lastname}</td>
-						<td>${carer.address}</td>
-						<td>${carer.username}</td>
-						<td>${carer.password}</td>
-						<td>${carer.telephoneNumber}</td>
-						<td>${carer.email}</td>
-						<td>${carer.qualifications}</td>
-						<td>${carer.availibility}</td>
-						<td>${carer.lastModification}</td>
-						<td><a href=<c:url value="/manage/carers/delete?id=${carer.id}" />
+						<td>${user.id}</td>
+						<td>${user.name}</td>
+						<td>${user.login}</td>
+						<td>${user.password}</td>
+						<td><a href=<c:url value="/user/delete?id=${user.id}" />
 							title="Ostrzeżenie, ta operacja nie może zostać cofnięta !"><span>Usuń</span></a></td>
-						<td><a href=<c:url value="/manage/carers/update?id=${carer.id}" />
+						<td><a href=<c:url value="/user/update?id=${user.id}" />
 							title="Przenosi na stronę edycji"><span>Edytuj</span></a></td>
+
 
 					</tr>
 				</tbody>
+
+
+
 			</c:forEach>
 
 

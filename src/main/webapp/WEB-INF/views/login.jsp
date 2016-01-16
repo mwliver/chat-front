@@ -68,7 +68,7 @@
 	<div id="login-box">
 	
  
-		<h2>Zaloguj sie do eOpieka - Administrator / Dyspozytor</h2>
+		<h2>Zaloguj sie do Czatu</h2>
  
  
 		<c:if test="${not empty error}">
