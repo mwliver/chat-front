@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,46 +13,40 @@
 <title>Czat</title>
 </head>
 <body>
-
 	<div class="datagrid">
+		<h2>Wiadomości</h2>
 
-	<form name='messageForm' action="<c:url value='/message' />" method='POST'>
-		<table>
-			<c:forEach var="message" items="${messages}">
-				<tbody>
-					<tr>
-						<td>${message.text}</td>
-					</tr>
-				</tbody>
-			</c:forEach>
+        <table>
+            <tbody>
+		        <c:forEach var="message" items="${messages}">
+        		    <tr>
+        			    <td>${message.createDate} :  ${message.text}</td>
+        			</tr>
+                </c:forEach>
+       		</tbody>
+        </table>
 
-            <tfoot>
+		<form name='messageForm'
+		    action="<c:url value='/message/save' />" method='POST'>
 
-			    <tr>
-                    <td><b>Wiadomość: </b></td>
-            		<td><input type='text' name='message' value=''></td>
-            	</tr>
+		    <table>
+			<tr>
+				<td><b>Wiadomość: </b>
 
-				<tr>
-					<td colspan="13"><div id="paging">
-					        <ul>
-                    		    <li>
+				<input type='text' name='text' value=''></td>
+			</tr>
+			        <td colspan='2' align="center"><br>
+                                <input name="submit" type="submit" value="Wyślij" class="button" />
 
-                    		    <a href=<c:url value="/message/save" />><span>Wyślij</span></a>
+                    <a class="button" href=<c:url value="/" />><span>Strona
+                    					główna</span></a>
+                    </td>
+			</tr>
+		   </table>
 
-                    		    </li>
-                    		</ul>
-
-							<ul>
-								<li><a href=<c:url value="/" />><span>Strona główna</span></a></li>
-							</ul>
-						</div>
-				</tr>
-			</tfoot>
-		    </table>
-	    </form>
+		   <input type="hidden"
+                     name="${_csrf.parameterName}" value="${_csrf.token}" />
+		</form>
 	</div>
-
-
 </body>
 </html>

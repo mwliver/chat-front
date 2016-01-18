@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="<c:url value="/resources/mainPage.css" />" rel="stylesheet">
-<title>e-Opieka</title>
+<title>Czat</title>
 </head>
 <body>
 <security:authorize access="hasRole('SUPERADMIN')">

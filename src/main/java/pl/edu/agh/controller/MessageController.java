@@ -12,6 +12,7 @@ import pl.edu.agh.rest.UrlsList;
 
 import java.beans.PropertyEditorSupport;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -36,6 +37,10 @@ public class MessageController {
 	public String hello(Model model) {
 		List<Message> messages = messageService.getAll();
 
+		Message message = new Message();
+
+		model.addAttribute("messageForm", message);
+
 		model.addAttribute("messages", messages);
 		return "listMessages";
 	}
@@ -50,16 +55,21 @@ public class MessageController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveCarer(@ModelAttribute("messageForm") Message message,
+	public String saveCarer(@ModelAttribute("messageForm") Message msg,
 			Model model) {
-//		message.setLastModification(new Date());
-//		message.setUserRole("ROLE_CARER");
+		msg.setCreateDate(new Date());
 		try {
-			messageService.postMessage(message, UrlsList.GET_SAVE_MESSAGE_URL);
+			messageService.postMessage(msg, UrlsList.GET_SAVE_MESSAGE_URL);
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		List<Message> messages = messageService.getAll();
+		model.addAttribute("messages", messages);
+
+		Message message = new Message();
+		model.addAttribute("messageForm", message);
 
 		return "listMessages";
 	}
@@ -85,7 +95,6 @@ public class MessageController {
 			e.printStackTrace();
 		}
 
-//		model.addAttribute("info", "");
 		messages = messageService.getAll();
 		model.addAttribute("messages", messages);
 
