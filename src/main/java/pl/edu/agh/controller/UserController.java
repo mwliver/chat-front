@@ -41,7 +41,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.GET)
-	public String viewAddPatient(Model model) {
+	public String viewAddUser(Model model) {
 		System.out.println("w get");
 		User user = new User();
 		model.addAttribute("userForm", user);
@@ -52,10 +52,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String savePatient(@ModelAttribute("userForm") User user,
+	public String saveUser(@ModelAttribute("userForm") User user,
 			Model model) {
-//		user.setLastModification(new Date());
-//		user.setUserRole("ROLE_PATIENT");
 		try {
 			userService.postUser(user, UrlsList.GET_SAVE_USER_URL);
 
@@ -71,7 +69,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String savePatient(@RequestParam("id") long id, Model model) {
+	public String saveUser(@RequestParam("id") long id, Model model) {
 
 		List<User> users = userService.getAll();
 
@@ -84,8 +82,7 @@ public class UserController {
 		}
 
 		try {
-			userService.postUser(userToDelete,
-					UrlsList.GET_REMOVE_USER_URL);
+			userService.postUser(userToDelete, UrlsList.GET_REMOVE_USER_URL);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -100,7 +97,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String getUpdatePatientView(@RequestParam("id") long id, Model model) {
+	public String getUpdateUserView(@RequestParam("id") long id, Model model) {
 
 		List<User> users = userService.getAll();
 		for (User pat : users)
@@ -117,20 +114,16 @@ public class UserController {
 		}
 
 		model.addAttribute("user", userToDelete);
-//		model.addAttribute("carers", carerService.getAll());
 
 		return "editUser";
 
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updatePatient(@ModelAttribute("user") User user,
+	public String updateUser(@ModelAttribute("user") User user,
 			Model model) {
-//		user.setLastModification(new Date());
-//		user.setUserRole("ROLE_PATIENT");
 		try {
-			userService
-					.postUser(user, UrlsList.GET_SAVE_USER_URL);
+			userService.postUser(user, UrlsList.GET_SAVE_USER_URL);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -138,7 +131,6 @@ public class UserController {
 
 		model.addAttribute("info", "Zaktualizowano użytkownika");
 		model.addAttribute("user", user);
-//		model.addAttribute("carers", carerService.getAll());
 
 		return "editUser";
 
@@ -146,15 +138,15 @@ public class UserController {
 	
 	public User getUserById(long id) {
 		List<User> userList = userService.getAll();
-		User endCarer = null;
+		User endUser = null;
 		for (User user : userList) {
 			if (user.getId() == id) {
-				endCarer = user;
+				endUser = user;
 				break;
 			}
 		}
 		
-		return endCarer;
+		return endUser;
 		
 	}
 

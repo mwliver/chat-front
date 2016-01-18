@@ -46,7 +46,7 @@ public class MessageController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.GET)
-	public String viewAddCarer(Model model) {
+	public String viewAddMessage(Model model) {
 		Message message = new Message();
 
 		model.addAttribute("messageForm", message);
@@ -55,7 +55,7 @@ public class MessageController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveCarer(@ModelAttribute("messageForm") Message msg,
+	public String saveMessage(@ModelAttribute("messageForm") Message msg,
 			Model model) {
 		msg.setCreateDate(new Date());
 		try {
@@ -75,7 +75,7 @@ public class MessageController {
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String removeCarer(@RequestParam("id") long id, Model model) {
+	public String removeMessage(@RequestParam("id") long id, Model model) {
 
 		List<Message> messages = messageService.getAll();
 
@@ -88,8 +88,7 @@ public class MessageController {
 		}
 
 		try {
-			messageService
-					.postMessage(messageToDelete, UrlsList.GET_REMOVE_MESSAGE_URL);
+			messageService.postMessage(messageToDelete, UrlsList.GET_REMOVE_MESSAGE_URL);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -102,7 +101,7 @@ public class MessageController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String getUpdateCarerView(@RequestParam("id") long id, Model model) {
+	public String getUpdateMessageView(@RequestParam("id") long id, Model model) {
 
 		List<Message> messages = messageService.getAll();
 		Message messageToUpdate = null;
@@ -120,9 +119,7 @@ public class MessageController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updateCarer(@ModelAttribute("message") Message message, Model model) {
-//		message.setLastModification(new Date());
-//		message.setUserRole("ROLE_CARER");
+	public String updateMessage(@ModelAttribute("message") Message message, Model model) {
 		try {
 			messageService.postMessage(message, UrlsList.GET_SAVE_MESSAGE_URL);
 
@@ -130,7 +127,6 @@ public class MessageController {
 			e.printStackTrace();
 		}
 
-//		model.addAttribute("info", "Zmieniono dane opiekuna");
 		model.addAttribute("message", message);
 
 		return "editMessage";

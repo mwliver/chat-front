@@ -20,7 +20,7 @@
             <tbody>
 		        <c:forEach var="message" items="${messages}">
         		    <tr>
-        			    <td>${message.createDate} :  ${message.text}</td>
+        			    <td>W dniu ${message.createDate} admin napisał :  ${message.text}</td>
         			</tr>
                 </c:forEach>
        		</tbody>
